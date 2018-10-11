@@ -14,10 +14,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
     grafo.cpp \
-    maincontroller.cpp
+    maincontroller.cpp \
+    no.cpp \
+    gmlparser.cpp
 
 HEADERS  += \
     grafo.h \
-    maincontroller.h
+    maincontroller.h \
+    no.h \
+    gmlparser.h
 
 FORMS    += mainwindow.ui

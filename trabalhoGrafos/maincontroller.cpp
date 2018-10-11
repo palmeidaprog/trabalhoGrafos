@@ -25,10 +25,10 @@ void MainWindow::procurarGrafo() {
         filename = dialog.selectedFiles();
     }
 
-    Grafos::Grafo<std::string> grafo(fopen(filename[0].toLatin1().data(), "rt"));
+    grafos::Grafo<std::string> grafo(fopen(filename[0].toLatin1().data(), "rt"));
 
     QMessageBox msgBox;
-    msgBox.setWindowTitle("Grafos Selecionados");
+    msgBox.setWindowTitle("Grafo");
     QString s = QString::fromStdString(grafo.getLista());
     arquivoEdit->setText(filename[0].toLatin1().data());
     if(!filename.empty()) {
@@ -39,5 +39,10 @@ void MainWindow::procurarGrafo() {
             //
         }
     }
+
+    grafo.pegaGML("teste.gml");
+    msgBox.setWindowTitle("Salvo");
+    msgBox.setText("GML salvo");
+    msgBox.exec();
 }
 

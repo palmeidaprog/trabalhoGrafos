@@ -4,39 +4,18 @@
 #include <cstdio>
 #include <string>
 #include <sstream>
+#include "no.h"
+#include "gmlparser.h"
 
 using std::stringstream;
+using grafos::No;
+using grafos::GMLParser;
 
-namespace Grafos {
+namespace grafos {
 template<typename T>
 class Grafo {
     int tamanho;
-
-    struct No {
-        int vertice;
-        No *prox;
-
-        No(int vertice, No *prox = nullptr) : vertice(vertice), prox(prox) {}
-        ~No() { }
-
-        bool operator>=(const No &b) {
-            return this->vertice >= b.vertice;
-        }
-
-        bool operator<=(const No &b) {
-            return this->vertice <= b.vertice;
-        }
-
-        bool operator<(const No &b) {
-            return this->vertice < b.vertice;
-        }
-        bool operator>(const No &b) {
-            return this->vertice > b.vertice;
-        }
-    };
-
     No **listaAdj;
-
 
     void criaListaAdj(FILE *arquivo) {
         if(arquivo == nullptr) {
@@ -64,7 +43,6 @@ class Grafo {
                 insereVertice(&listaAdj[i], vertice);
             }
         }
-
         fclose(arquivo);
     }
 
@@ -79,13 +57,12 @@ public:
             No *lido = listaAdj[i];
             while(lido != nullptr) {
                 No *apaga = lido;
-                lido = apaga->prox;
+                lido = apaga->getProx();
                 delete apaga;
             }
         }
         delete[] listaAdj;
     }
-
 
 
     std::string getLista() {
@@ -95,12 +72,17 @@ public:
             s << "[" << i << "]";
             No *lido = listaAdj[i];
             while(lido != nullptr) {
-                s << "->" << lido->vertice;
-                lido = lido->prox;
+                s << " ->" << lido->getVertice();
+                lido = lido->getProx();
             }
             s << "\n";
         }
         return s.str();
+    }
+
+    std::string pegaGML(const string &arquivo) {
+        GMLParser gml(listaAdj, tamanho, arquivo);
+        return std::move(gml.gerarGML());
     }
 
 
@@ -114,17 +96,13 @@ private:
         }
 
         No *lido = *no;
-        while(lido->prox != nullptr && novo < lido->prox) {
-            lido = lido->prox;
+        while(lido->getProx() != nullptr && novo < lido->getProx()) {
+            lido = lido->getProx();
         }
 
-        novo->prox = lido->prox;
-        lido->prox = novo;
+        novo->setProx(lido->getProx());
+        lido->setProx(novo);
     }
-
-
-
-
 };
 }
 

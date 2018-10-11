@@ -6,51 +6,80 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>412</width>
-    <height>123</height>
+    <width>687</width>
+    <height>571</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Trabalho Grafos</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="label">
+   <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>-10</y>
-      <width>389</width>
-      <height>51</height>
+      <x>440</x>
+      <y>10</y>
+      <width>221</width>
+      <height>71</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Escolha um arquivo contendo um Grafo:</string>
+    <property name="title">
+     <string>Arquivo de Entrada</string>
     </property>
+    <widget class="QRadioButton" name="radioButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>331</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Texto com Matrix de Adjacencia </string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>331</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Texto com Lista de Adjacencia</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>50</y>
-      <width>389</width>
-      <height>61</height>
+      <y>30</y>
+      <width>421</width>
+      <height>41</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <property name="spacing">
       <number>15</number>
      </property>
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMaximumSize</enum>
+     </property>
      <property name="leftMargin">
       <number>20</number>
      </property>
      <property name="topMargin">
-      <number>20</number>
+      <number>5</number>
      </property>
      <property name="rightMargin">
       <number>20</number>
      </property>
      <property name="bottomMargin">
-      <number>20</number>
+      <number>5</number>
      </property>
      <item>
       <widget class="QLineEdit" name="arquivoEdit"/>
@@ -63,6 +92,28 @@
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>9</y>
+      <width>243</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="text">
+     <string>Escolha um arquivo contendo um Grafo:</string>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
    </widget>
   </widget>
  </widget>
