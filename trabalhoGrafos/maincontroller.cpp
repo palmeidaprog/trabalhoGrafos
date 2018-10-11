@@ -19,21 +19,20 @@ void MainWindow::procurarGrafo() {
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::AnyFile);
     dialog.setViewMode(QFileDialog::Detail);
-    QStringList filenames;
+
+    QStringList filename;
     if(dialog.exec()) {
-        filenames = dialog.selectedFiles();
+        filename = dialog.selectedFiles();
     }
 
+    Grafos::Grafo<std::string> grafo(fopen(filename[0].toLatin1().data(), "rt"));
 
     QMessageBox msgBox;
     msgBox.setWindowTitle("Grafos Selecionados");
-    QString s = "";
-    for(auto i : filenames) {
-        s += i + " ";
-    }
-    arquivoEdit->setText(s);
-    if(!filenames.empty()) {
-        msgBox.setText(s + "\n[2]->2->4->5\n");
+    QString s = QString::fromStdString(grafo.getLista());
+    arquivoEdit->setText(filename[0].toLatin1().data());
+    if(!filename.empty()) {
+        msgBox.setText(s);
         msgBox.addButton(QMessageBox::Ok);
         //msgBox.defaultButton(QMessageBox::Ok);
         if(msgBox.exec()) {
@@ -42,5 +41,3 @@ void MainWindow::procurarGrafo() {
     }
 }
 
-
-ç

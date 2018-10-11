@@ -6,6 +6,7 @@
 #include <QLineEdit>
 #include <QFileDialog>
 #include <QMessageBox>
+#include "grafo.h"
 
 namespace Ui {
 class MainWindow;
