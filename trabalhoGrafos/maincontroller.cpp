@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "maincontroller.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -24,6 +24,7 @@ void MainWindow::procurarGrafo() {
         filenames = dialog.selectedFiles();
     }
 
+
     QMessageBox msgBox;
     msgBox.setWindowTitle("Grafos Selecionados");
     QString s = "";
@@ -31,6 +32,15 @@ void MainWindow::procurarGrafo() {
         s += i + " ";
     }
     arquivoEdit->setText(s);
+    if(!filenames.empty()) {
+        msgBox.setText(s + "\n[2]->2->4->5\n");
+        msgBox.addButton(QMessageBox::Ok);
+        //msgBox.defaultButton(QMessageBox::Ok);
+        if(msgBox.exec()) {
+            //
+        }
+    }
 }
 
 
+ç
