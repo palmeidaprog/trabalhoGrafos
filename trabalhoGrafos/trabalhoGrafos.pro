@@ -16,12 +16,15 @@ SOURCES += main.cpp\
     grafo.cpp \
     maincontroller.cpp \
     no.cpp \
-    gmlparser.cpp
+    gmlparser.cpp \
+    graphmlparser.cpp
 
 HEADERS  += \
     grafo.h \
     maincontroller.h \
     no.h \
-    gmlparser.h
+    gmlparser.h \
+    graphmlparser.h \
+    grafotipo.h
 
 FORMS    += mainwindow.ui

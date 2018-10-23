@@ -1,0 +1,847 @@
+<?xml version="1.0" encoding="UTF-8"?><graphml xmlns="http://graphml.graphdrawing.org/xmlns">
+<key attr.name="label" attr.type="string" for="node" id="label"/>
+<key attr.name="Edge Label" attr.type="string" for="edge" id="edgelabel"/>
+<key attr.name="weight" attr.type="double" for="edge" id="weight"/>
+<key attr.name="r" attr.type="int" for="node" id="r"/>
+<key attr.name="g" attr.type="int" for="node" id="g"/>
+<key attr.name="b" attr.type="int" for="node" id="b"/>
+<key attr.name="x" attr.type="float" for="node" id="x"/>
+<key attr.name="y" attr.type="float" for="node" id="y"/>
+<key attr.name="size" attr.type="float" for="node" id="size"/>
+<graph edgedefault="directed">
+<node id="n0">
+<data key="label">n0</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">130.1484</data>
+<data key="y">-101.41706</data>
+</node>
+<node id="n1">
+<data key="label">n1</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">107.88887</data>
+<data key="y">-137.23967</data>
+</node>
+<node id="n2">
+<data key="label">n2</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">24.514797</data>
+<data key="y">73.10164</data>
+</node>
+<node id="n3">
+<data key="label">n3</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-25.90001</data>
+<data key="y">-64.96474</data>
+</node>
+<node id="n4">
+<data key="label">n4</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">82.697754</data>
+<data key="y">-91.08716</data>
+</node>
+<node id="n5">
+<data key="label">n5</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">86.92813</data>
+<data key="y">113.08659</data>
+</node>
+<node id="n6">
+<data key="label">n6</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-47.272358</data>
+<data key="y">-48.462833</data>
+</node>
+<node id="n7">
+<data key="label">n7</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">12.2855</data>
+<data key="y">159.85175</data>
+</node>
+<node id="n8">
+<data key="label">n8</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">58.43087</data>
+<data key="y">-58.06917</data>
+</node>
+<node id="n9">
+<data key="label">n9</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">42.625023</data>
+<data key="y">45.879936</data>
+</node>
+<node id="n10">
+<data key="label">n10</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">77.878586</data>
+<data key="y">122.15343</data>
+</node>
+<node id="n11">
+<data key="label">n11</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-92.28492</data>
+<data key="y">-66.28634</data>
+</node>
+<node id="n12">
+<data key="label">n12</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">53.883934</data>
+<data key="y">32.32139</data>
+</node>
+<node id="n13">
+<data key="label">n13</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">88.05977</data>
+<data key="y">219.76534</data>
+</node>
+<node id="n14">
+<data key="label">n14</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-325.08133</data>
+<data key="y">-74.774956</data>
+</node>
+<node id="n15">
+<data key="label">n15</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-471.03943</data>
+<data key="y">366.17828</data>
+</node>
+<node id="n16">
+<data key="label">n16</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-14.720888</data>
+<data key="y">-21.724556</data>
+</node>
+<node id="n17">
+<data key="label">n17</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">2.5349965</data>
+<data key="y">-46.405025</data>
+</node>
+<node id="n18">
+<data key="label">n18</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-23.962238</data>
+<data key="y">7.106529</data>
+</node>
+<node id="n19">
+<data key="label">n19</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-39.55973</data>
+<data key="y">-110.53846</data>
+</node>
+<node id="n20">
+<data key="label">n20</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-45.63821</data>
+<data key="y">-82.567604</data>
+</node>
+<node id="n21">
+<data key="label">n21</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">58.649677</data>
+<data key="y">115.76787</data>
+</node>
+<node id="n22">
+<data key="label">n22</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">83.52362</data>
+<data key="y">-18.086111</data>
+</node>
+<node id="n23">
+<data key="label">n23</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-416.9743</data>
+<data key="y">94.58714</data>
+</node>
+<node id="n24">
+<data key="label">n24</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">55.360016</data>
+<data key="y">86.46917</data>
+</node>
+<node id="n25">
+<data key="label">n25</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">103.038666</data>
+<data key="y">-55.392754</data>
+</node>
+<node id="n26">
+<data key="label">n26</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">52.862503</data>
+<data key="y">-90.66357</data>
+</node>
+<node id="n27">
+<data key="label">n27</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-3.6256366</data>
+<data key="y">14.457648</data>
+</node>
+<node id="n28">
+<data key="label">n28</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-192.39264</data>
+<data key="y">110.18186</data>
+</node>
+<node id="n29">
+<data key="label">n29</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-284.1187</data>
+<data key="y">-193.42828</data>
+</node>
+<node id="n30">
+<data key="label">n30</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-0.7595048</data>
+<data key="y">269.11768</data>
+</node>
+<node id="n31">
+<data key="label">n31</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-154.55176</data>
+<data key="y">53.36293</data>
+</node>
+<node id="n32">
+<data key="label">n32</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-121.35463</data>
+<data key="y">167.69067</data>
+</node>
+<node id="n33">
+<data key="label">n33</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-51.674248</data>
+<data key="y">40.562458</data>
+</node>
+<node id="n34">
+<data key="label">n34</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">112.95194</data>
+<data key="y">-41.61413</data>
+</node>
+<node id="n35">
+<data key="label">n35</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-27.551348</data>
+<data key="y">-89.51149</data>
+</node>
+<node id="n36">
+<data key="label">n36</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">29.729565</data>
+<data key="y">-14.595233</data>
+</node>
+<node id="n37">
+<data key="label">n37</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">103.3721</data>
+<data key="y">-4.4848137</data>
+</node>
+<node id="n38">
+<data key="label">n38</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">231.14137</data>
+<data key="y">195.98497</data>
+</node>
+<node id="n39">
+<data key="label">n39</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-18.255001</data>
+<data key="y">25.966936</data>
+</node>
+<node id="n40">
+<data key="label">n40</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">26.168255</data>
+<data key="y">-64.07256</data>
+</node>
+<node id="n41">
+<data key="label">n41</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">108.05892</data>
+<data key="y">-90.77125</data>
+</node>
+<node id="n42">
+<data key="label">n42</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">2.6837034</data>
+<data key="y">40.552555</data>
+</node>
+<node id="n43">
+<data key="label">n43</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">89.43233</data>
+<data key="y">56.020206</data>
+</node>
+<node id="n44">
+<data key="label">n44</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">96.70353</data>
+<data key="y">-120.240944</data>
+</node>
+<node id="n45">
+<data key="label">n45</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-30.90368</data>
+<data key="y">-48.329224</data>
+</node>
+<node id="n46">
+<data key="label">n46</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-418.2931</data>
+<data key="y">88.64659</data>
+</node>
+<node id="n47">
+<data key="label">n47</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">74.05524</data>
+<data key="y">-135.7952</data>
+</node>
+<node id="n48">
+<data key="label">n48</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-35.088463</data>
+<data key="y">217.95433</data>
+</node>
+<node id="n49">
+<data key="label">n49</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">72.88342</data>
+<data key="y">-115.21235</data>
+</node>
+<edge id="0" source="n0" target="n41">
+<data key="edgelabel">Type 2</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="1" source="n1" target="n44">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="2" source="n1" target="n44">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="3" source="n2" target="n7">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="4" source="n2" target="n7">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="5" source="n2" target="n36">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="6" source="n3" target="n6">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="7" source="n3" target="n6">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="8" source="n3" target="n18">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="9" source="n3" target="n20">
+<data key="edgelabel">Type 2</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="10" source="n3" target="n35">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="11" source="n3" target="n40">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="12" source="n3" target="n40">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="13" source="n4" target="n8">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="14" source="n4" target="n26">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="15" source="n4" target="n26">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="16" source="n4" target="n41">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="17" source="n4" target="n41">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="18" source="n5" target="n10">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="19" source="n5" target="n38">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="20" source="n5" target="n38">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="21" source="n5" target="n43">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="22" source="n5" target="n48">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="23" source="n6" target="n11">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="24" source="n6" target="n11">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="25" source="n6" target="n16">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="26" source="n6" target="n16">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="27" source="n6" target="n36">
+<data key="edgelabel">Type 2</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="28" source="n6" target="n45">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="29" source="n7" target="n21">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="30" source="n7" target="n48">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="31" source="n7" target="n48">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="32" source="n8" target="n25">
+<data key="edgelabel">Type 2</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="33" source="n8" target="n26">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="34" source="n8" target="n36">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="35" source="n8" target="n36">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="36" source="n8" target="n40">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="37" source="n9" target="n18">
+<data key="edgelabel">Type 2</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="38" source="n9" target="n22">
+<data key="edgelabel">Type 2</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="39" source="n9" target="n24">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="40" source="n9" target="n24">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="41" source="n9" target="n39">
+<data key="edgelabel">Type 2</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="42" source="n9" target="n43">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="43" source="n10" target="n12">
+<data key="edgelabel">Type 2</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="44" source="n10" target="n13">
+<data key="edgelabel">Type 2</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="45" source="n10" target="n21">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="46" source="n10" target="n21">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="47" source="n10" target="n38">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="48" source="n11" target="n14">
+<data key="edgelabel">Type 2</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="49" source="n12" target="n36">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="50" source="n12" target="n36">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="51" source="n14" target="n29">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="52" source="n14" target="n29">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="53" source="n16" target="n22">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="54" source="n16" target="n39">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="55" source="n17" target="n26">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="56" source="n17" target="n26">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="57" source="n17" target="n35">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="58" source="n17" target="n39">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="59" source="n17" target="n42">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="60" source="n17" target="n45">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="61" source="n18" target="n33">
+<data key="edgelabel">Type 2</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="62" source="n19" target="n35">
+<data key="edgelabel">Type 2</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="63" source="n21" target="n24">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="64" source="n21" target="n24">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="65" source="n22" target="n34">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="66" source="n22" target="n37">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="67" source="n22" target="n37">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="68" source="n22" target="n41">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="69" source="n23" target="n46">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="70" source="n23" target="n46">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="71" source="n25" target="n34">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="72" source="n25" target="n34">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="73" source="n25" target="n37">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="74" source="n25" target="n49">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="75" source="n26" target="n49">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="76" source="n26" target="n49">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="77" source="n27" target="n36">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="78" source="n27" target="n39">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="79" source="n27" target="n39">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="80" source="n28" target="n31">
+<data key="edgelabel">Type 2</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="81" source="n28" target="n32">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="82" source="n28" target="n32">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="83" source="n30" target="n48">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="84" source="n31" target="n33">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="85" source="n32" target="n39">
+<data key="edgelabel">Type 2</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="86" source="n32" target="n48">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="87" source="n33" target="n39">
+<data key="edgelabel">Type 2</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="88" source="n36" target="n40">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="89" source="n36" target="n40">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="90" source="n37" target="n43">
+<data key="edgelabel">Type 2</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="91" source="n40" target="n44">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="92" source="n41" target="n44">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="93" source="n42" target="n48">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="94" source="n47" target="n49">
+<data key="edgelabel">Type 0</data>
+<data key="weight">1.0</data>
+</edge>
+<edge id="95" source="n47" target="n49">
+<data key="edgelabel">Type 1</data>
+<data key="weight">1.0</data>
+</edge>
+</graph>
+</graphml>

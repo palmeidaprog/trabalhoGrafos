@@ -7,6 +7,9 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include "grafo.h"
+#include "graphmlparser.h"
+
+using grafos::GraphMLParser;
 
 namespace Ui {
 class MainWindow;
