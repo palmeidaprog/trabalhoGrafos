@@ -1,12 +1,12 @@
 #include "graphmlparser.h"
 
 grafos::GraphMLParser::GraphMLParser(const std::string &nomeArquivo) :
-    nomeArquivo(nomeArquivo) {
+    nomeArquivo(nomeArquivo), procurando(Procurando::GRAFO) grafo(nullptr) {
     parse();
 }
 
-grafos::GraphMLParser::GraphMLParser(grafos::Grafo grafo) :
-    grafo(std::move(grafo)) { }
+grafos::GraphMLParser::GraphMLParser(grafos::Grafo *grafo) :
+    grafo(grafo) { }
 
 void grafos::GraphMLParser::parse() {
     ifstream in(nomeArquivo);
@@ -17,28 +17,9 @@ void grafos::GraphMLParser::parse() {
     }
 
     string s;
-
-
     while(in.good()) {
         getline(in, s);
         scanner(s, pilha);
-
-        if(pilha.empty()) {
-            // <graph ... >
-            if(s.find("<graph")) {
-               pilha.push("graph");
-               long pos = s.find(" ");
-               s.erase(s.begin(), s.begin() + pos);
-               while(s.length() > 0) {
-                   pos = s.find("=");
-                   if(pos == string::npos) {
-
-                   }
-               }
-
-            }
-            continue;
-        }
     }
 
     in.close();
@@ -46,72 +27,147 @@ void grafos::GraphMLParser::parse() {
 
 void grafos::GraphMLParser::scanner(string &parse, stack<string>
                                          &pilha) {
-    Procurando procurando = Procurando::GRAFO;
     GrafoTipo tipo;
     long pos = 0;
-    string s;
+    string s, grafoId;
     while(pos < parse.size()) {
         switch(procurando) {
-        case Procurando::GRAFO:
-            if(comecaCom("<graph", s, pos)) {
+            case Procurando::GRAFO:
+            if(comecaCom("<graph", s, pos) {
                 procurando = Procurando::PARAMETRO_GRAFO;
             } else {
                 pos = parse.size();
             }
             break;
         case Procurando::PARAMETRO_GRAFO:
-
-        }
-
-
-        if(parse[i] == '<') {
-            procurando = Procurando::COMANDO;
-            s = "";
-        } else if(oarse[i] == '/') {
-            procurando = Procurando::FINALIZA;
-            s = "";
-        } else if(parse[i] == ' ') {
-            if(procurando == Procurando::COMANDO) {
-                pilha.push(s);
+            interpretaGrafo(s, pos);
+            procurando = Procurando::NODE;
+            break;
+        case Procurando::NODE:
+            if(comecaCom("<node", s, pos)) {
+                interpretaNo(s, pos);
+            } else {
+                atualizaEstado(s, pos);
             }
-        } else {
-            s += parse[i];
+            break;
+        case Procurando::NODE_DATA:
+            if(comecaCom("<node", s, pos)) {
+                interpretaNoData(s, pos);
+            } else {
+                atualizaEstado(s, pos);
+            }
+            break;
+        case Procurando::ARESTA:
+            if(comecaCom("<edge", s, pos)) {
+                interpretaAresta(s, pos);
+            } else {
+                atualizaEstado(s, pos);
+            }
+            break;
+        case Procurando::ARESTA_DATA:
+            if(comecaCom("<node", s, pos)) {
+                interpretaArestaData(s, pos);
+            } else {
+                atualizaEstado(s, pos);
+            }
+            break;
+        default: // FIM
+            break;
         }
-        ++i;
-    }
-
-}
-
-Parametro grafos::GraphMLParser::proxParametro(std::__1::string &parse, int pos) {
-    Parametro p;
-    string *s = p.chave;
-    while(pos < parse.size()) {
-        if(parse[pos] == '=' && s == p.chave) {
-            s = p.valor;
-        } else if("")
-        ++pos;
     }
 }
 
 
+// se "atualizar" nao for informado ou for true, no final o pos marcará a
+// posição da proxima palavra, se falso pos so mudara se for para pular
+// espaços.
 bool grafos::GraphMLParser::comecaCom(const string &procurar,
-                                      const string &palavra, int &pos) {
-
-    while(palavra[pos] == ' ') {
-        ++pos;
-    }
-
-    for(int i = 0, j = pos; j < palavra.size(); i++, j++) {
+                                      const string &palavra, long &pos,
+                                      bool atualiza) {
+    removeEspacos(palavra, pos);
+    long j = pos;
+    for(int i = 0; j < palavra.size(); i++, j++) {
         if(tolower(procurar[i]) != tolower(palavra[pos])) {
             return false;
         }
     }
-    pos = j;
+    if(atualiza) {
+        pos = j;
+    }
+    removeEspacos(palavra, pos);
     return true;
 }
 
-void grafos::GraphMLParser::interpretaGrafo(const std::__1::string &s,
-                                            int &pos) {
+void grafos::GraphMLParser::interpretaGrafo(const string &s, long &pos) {
+    string id;
+    GrafoTipo tipo = GrafoTipo::NORMAL;
 
+    while(pos < s.size()) {
+        if(comecaCom("id=" ,s, pos)) {
+            id = pegaValor(s, pos);
+        } else if(comecaCom("defaultgraph=", s, pos)) {
+            tipo = (pegaValor(s, pos) == "directed") ? GrafoTipo::ORIENTADO :
+                GrafoTipo::NORMAL;
+        } else if(comecaCom("/", s, pos)) {
+            return;
+        } else if(comecaCom(">", s, pos)) {
+            grafo = new Grafo(tipo, id);
+            return;
+        }
+    }
+}
+
+// move a posicao pos para onde nao há espacos
+void grafos::GraphMLParser::removeEspacos(const string &s, long &pos) {
+    while(s[pos] == ' ') {
+        ++pos;
+    }
+}
+
+// pega o valor da prox string
+string grafos::GraphMLParser::pegaValor(const string &s, long &pos) {
+    char para;
+    string lido;
+
+    if(comecaCom("\"", s, pos)) {
+        para = '\"';
+    } else {
+        para = ' ';
+    }
+
+    while(s[pos] != para) {
+        lido += s[pos];
+    }
+    ++pos;
+    return lido;
+}
+
+void grafos::GraphMLParser::interpretaNo(const string &s, long &pos) {
 
 }
+
+// atualiza o atributo da classe procurando, quando a previsão do loop do
+// scanner errou a progressão entre as leituras.
+grafos::GraphMLParser::Procurando grafos::GraphMLParser::atualizaEstado(
+    const string &s, long &pos) {
+    if(comecaCom("<node", s, pos, false)) {
+        return Procurando::NODE;
+    } else if(comecaCom("<data", s, pos, false)) {
+        return (procurando == Procurando::ARESTA) ? Procurando::ARESTA_DATA ?
+            Procurando::NODE_DATA;
+    } else if(comecaCom("<edge", s, pos, false)) {
+        return Procurando::ARESTA;
+    } else if(comecaCom("</edge", s, pos)) {
+        ++pos;
+        return Procurando::ARESTA;
+    } else if(comecaCom("</data", s, pos)) {
+        ++pos;
+        return procurando;
+    } else if(comecaCom("</node", s, pos)) {
+        ++pos;
+        return Procurando::NODE;
+    } else {
+        return Procurando::FIM;
+    }
+}
+

@@ -4,22 +4,33 @@
 #include <cstdio>
 #include <string>
 #include <sstream>
+#include <hash_map>
 #include "no.h"
 #include "gmlparser.h"
 #include "grafotipo.h"
+#include "graphmlparser.h"
 
 using std::stringstream;
+using std::string;
+using std::hash;
 
 namespace grafos {
+class GraphMLParser;
 class Grafo {
     int tamanho;
+    friend GraphMLParser;
     GrafoTipo tipo;
+    string id;
+    hash<string, *No> nos;
     No **listaAdj;
 
 
 public:
     Grafo(FILE *arquivo, GrafoTipo tipo = GrafoTipo::NORMAL) : tamanho(0) {
         criaListaAdj(arquivo);
+    }
+    Grafo(GrafoTipo tipo = GrafoTipo::NORMAL, const string &id = "") :
+        tipo(tipo), id(id), tamanho(0), listaAdj(nullptr){
     }
 
     ~Grafo() {
@@ -53,6 +64,14 @@ public:
     std::string pegaGML(const string &arquivo) {
         GMLParser gml(listaAdj, tamanho, arquivo);
         return std::move(gml.gerarGML());
+    }
+
+    const string &getId() const {
+        return id;
+    }
+
+    void setId(const string &id) {
+        Grafo::id = id;
     }
 
 private:
