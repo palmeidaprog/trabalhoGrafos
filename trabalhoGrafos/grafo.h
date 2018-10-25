@@ -6,49 +6,19 @@
 #include <sstream>
 #include "no.h"
 #include "gmlparser.h"
+#include "grafotipo.h"
 
 using std::stringstream;
-using grafos::No;
-using grafos::GMLParser;
 
 namespace grafos {
-template<typename T>
 class Grafo {
     int tamanho;
+    GrafoTipo tipo;
     No **listaAdj;
-
-    void criaListaAdj(FILE *arquivo) {
-        if(arquivo == nullptr) {
-            return;
-        }
-
-
-        fseek(arquivo, 0, SEEK_SET);
-        fscanf(arquivo, "%d", &tamanho);
-        if(tamanho <= 0) {
-            return;
-        }
-
-        // inicializa a lista de Adjacencia
-        listaAdj = new No*[tamanho];
-        for(int i = 0; i < tamanho; i++) {
-            listaAdj[i] = nullptr;
-        }
-
-        int vertice, i = 0;
-        while(fscanf(arquivo, "%d", &vertice) == 1) {
-            if(vertice == -1) {
-                ++i;
-            } else {
-                insereVertice(&listaAdj[i], vertice);
-            }
-        }
-        fclose(arquivo);
-    }
 
 
 public:
-    Grafo(FILE *arquivo) : tamanho(0) {
+    Grafo(FILE *arquivo, GrafoTipo tipo = GrafoTipo::NORMAL) : tamanho(0) {
         criaListaAdj(arquivo);
     }
 
@@ -84,6 +54,39 @@ public:
         GMLParser gml(listaAdj, tamanho, arquivo);
         return std::move(gml.gerarGML());
     }
+
+private:
+    void criaListaAdj(FILE *arquivo) {
+        if(arquivo == nullptr) {
+            return;
+        }
+
+
+        fseek(arquivo, 0, SEEK_SET);
+        fscanf(arquivo, "%d", &tamanho);
+        if(tamanho <= 0) {
+            return;
+        }
+
+        // inicializa a lista de Adjacencia
+        listaAdj = new No*[tamanho];
+        for(int i = 0; i < tamanho; i++) {
+            listaAdj[i] = nullptr;
+        }
+
+        int vertice, i = 0;
+        while(fscanf(arquivo, "%d", &vertice) == 1) {
+            if(vertice == -1) {
+                ++i;
+            } else {
+                insereVertice(&listaAdj[i], vertice);
+            }
+        }
+        fclose(arquivo);
+    }
+
+
+
 
 
 private:

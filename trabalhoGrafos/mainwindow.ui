@@ -6,53 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>687</width>
-    <height>571</height>
+    <width>447</width>
+    <height>305</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Trabalho Grafos</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QGroupBox" name="groupBox">
-    <property name="geometry">
-     <rect>
-      <x>440</x>
-      <y>10</y>
-      <width>221</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Arquivo de Entrada</string>
-    </property>
-    <widget class="QRadioButton" name="radioButton">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>20</y>
-       <width>331</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Texto com Matrix de Adjacencia </string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="radioButton_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>40</y>
-       <width>331</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Texto com Lista de Adjacencia</string>
-     </property>
-    </widget>
-   </widget>
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
