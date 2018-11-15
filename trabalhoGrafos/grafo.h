@@ -4,28 +4,29 @@
 #include <cstdio>
 #include <string>
 #include <sstream>
-#include <hash_map>
+#include <vector>
+#include <map>
 #include "no.h"
 #include "gmlparser.h"
 #include "grafotipo.h"
-#include "graphmlparser.h"
 
 using std::stringstream;
 using std::string;
-using std::hash;
+using std::vector;
 
 namespace grafos {
-class GraphMLParser;
+template <typename T = float>
 class Grafo {
     int tamanho;
-    friend GraphMLParser;
+    //friend GraphMLParser;
     GrafoTipo tipo;
     string id;
-    hash<string, *No> nos;
-    No **listaAdj;
-
+    vector<No<T>*> vertices;
+    No<T> **listaAdj;
+    int arestas;
 
 public:
+
     Grafo(FILE *arquivo, GrafoTipo tipo = GrafoTipo::NORMAL) : tamanho(0) {
         criaListaAdj(arquivo);
     }
@@ -33,16 +34,34 @@ public:
         tipo(tipo), id(id), tamanho(0), listaAdj(nullptr){
     }
 
+    Grafo(No<T> **listaAdjacente, const vector<No<T>*> &vertices,
+          GrafoTipo tipo = GrafoTipo::VALORADO_ORIENTADO, int arestas = 0,
+          const string &id = "") : listaAdj(listaAdjacente),
+        vertices(vertices), tipo(tipo), id(id), arestas(arestas)
+    { }
+
     ~Grafo() {
         for(int i = 0; i < tamanho; i++) {
-            No *lido = listaAdj[i];
+            No<T> *lido = listaAdj[i];
             while(lido != nullptr) {
-                No *apaga = lido;
+                No<T> *apaga = lido;
                 lido = apaga->getProx();
                 delete apaga;
             }
         }
         delete[] listaAdj;
+    }
+
+    int getVerticesNum() const {
+        return vertices.size();
+    }
+
+    int getArestasNum() const {
+        return arestas;
+    }
+
+    GrafoTipo getTipo() const {
+        return tipo;
     }
 
 
@@ -51,7 +70,7 @@ public:
 
         for(int i = 0; i < tamanho; i++) {
             s << "[" << i << "]";
-            No *lido = listaAdj[i];
+            No<T> *lido = listaAdj[i];
             while(lido != nullptr) {
                 s << " ->" << lido->getVertice();
                 lido = lido->getProx();
@@ -62,7 +81,7 @@ public:
     }
 
     std::string pegaGML(const string &arquivo) {
-        GMLParser gml(listaAdj, tamanho, arquivo);
+        GMLParser<T> gml(listaAdj, tamanho, arquivo);
         return std::move(gml.gerarGML());
     }
 
@@ -73,6 +92,15 @@ public:
     void setId(const string &id) {
         Grafo::id = id;
     }
+
+    No<T> **getListaAdjacente() {
+        return listaAdj;
+    }
+
+    vector<No<T>*> getVertices() {
+        return vertices;
+    }
+
 
 private:
     void criaListaAdj(FILE *arquivo) {
@@ -88,7 +116,7 @@ private:
         }
 
         // inicializa a lista de Adjacencia
-        listaAdj = new No*[tamanho];
+        listaAdj = new No<T>*[tamanho];
         for(int i = 0; i < tamanho; i++) {
             listaAdj[i] = nullptr;
         }
@@ -108,22 +136,32 @@ private:
 
 
 
+
 private:
 
-    void insereVertice(No **no, int vertice) {
-        No *novo = new No(vertice);
+    void insereVertice(No<T> **no, int vertice) {
+        No<T> *novo = new No<T>(vertice);
         if(*no == nullptr) {
             *no = novo;
             return;
         }
 
-        No *lido = *no;
-        while(lido->getProx() != nullptr && novo < lido->getProx()) {
+        if(novo->getVertice() <= (*no)->getVertice()) {
+            novo->setProx(*no);
+            *no = novo;
+            return;
+        }
+
+        No<T> *lido = *no, *ant = NULL;
+        while(lido != nullptr && novo->getVertice() >
+              lido->getVertice()) {
+            ant = lido;
             lido = lido->getProx();
         }
 
-        novo->setProx(lido->getProx());
-        lido->setProx(novo);
+        ant->setProx(novo);
+        novo->setProx(lido);
+
     }
 };
 }

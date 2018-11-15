@@ -17,7 +17,10 @@ SOURCES += main.cpp\
     maincontroller.cpp \
     no.cpp \
     gmlparser.cpp \
-    graphmlparser.cpp
+    graphmlparser.cpp \
+    grafobuilder.cpp \
+    geradorgraphml.cpp \
+    kmeans.cpp
 
 HEADERS  += \
     grafo.h \
@@ -25,6 +28,9 @@ HEADERS  += \
     no.h \
     gmlparser.h \
     graphmlparser.h \
-    grafotipo.h
+    grafotipo.h \
+    grafobuilder.h \
+    geradorgraphml.h \
+    kmeans.h
 
 FORMS    += mainwindow.ui

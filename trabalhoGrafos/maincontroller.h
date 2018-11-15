@@ -6,10 +6,13 @@
 #include <QLineEdit>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QLabel>
 #include "grafo.h"
 #include "graphmlparser.h"
+#include "geradorgraphml.h"
 
 using grafos::GraphMLParser;
+using grafos::Grafo;
 
 namespace Ui {
 class MainWindow;
@@ -24,11 +27,14 @@ public:
 
 private slots:
     void procurarGrafo();
+    void salva();
 
 private:
     Ui::MainWindow *ui;
-    QPushButton *procurarBtn;
+    Grafo<float> *grafo;
+    QPushButton *procurarBtn, *salvaBtn;
     QLineEdit *arquivoEdit;
+    QLabel *verticesLabel, *arestasLabel, *tipoLabel;
 
 };
 

@@ -2,33 +2,64 @@
 #define NOLISTA_H
 
 #include <string>
+#include <vector>
 #include <sstream>
 
 using std::string;
 using std::stringstream;
+using std::vector;
 
 namespace grafos {
-template <typename T = int>
+template <typename T = float>
 class No {
-public:
     int vertice;
     string verticeId, verticeLabel;
     string arestaId, arestaLabel;
     int r, g, b; // cores (gephi)
-    float x, y; // posicao (gephi)
+    float x, y, size; // posicao (gephi)
     T valorAresta; // peso da aresta (pode ser qualquer tipo)
     No *prox;
 
-    No(int vertice, No *prox = nullptr) : vertice(vertice), prox(prox) {
+    struct Data {
+        string key;
+        string value;
+
+        Data(const string &key, const string &value) : key(key), value(value)
+        { }
+        ~Data() { }
+    };
+    vector<Data> data, arestaData;
+
+public:
+
+    // copia
+    No(const No<T> *copia) : prox(nullptr) {
+        vertice = copia->vertice;
+        verticeId = copia->verticeId;
+        verticeLabel = copia->verticeLabel;
+        arestaId = copia->arestaId;
+        arestaLabel = copia->arestaLabel;
+        r = copia->r;
+        g = copia->g;
+        b = copia->b;
+        x = copia->x;
+        y = copia->y;
+        size = copia->size;
+        valorAresta = copia->valorAresta;
+    }
+
+    No(int vertice, No<T> *prox = nullptr) : vertice(vertice), prox(prox) {
         stringstream s;
         s << vertice;
         verticeId = s.str();
     }
+
+    No(const string &id) : verticeId(id), prox(nullptr) { }
+
     No(int vertice, const string &verticeId, No *prox = nullptr) :
             vertice(vertice), verticeId(verticeId), prox(prox) { }
     ~No() { }
 
-public:
     inline bool operator>=(const No &b) {
         return this->valorAresta >= b.valorAresta;
     }
@@ -46,6 +77,14 @@ public:
 
     int getVertice() const {
         return vertice;
+    }
+
+    float getSize() const {
+        return size;
+    }
+
+    void setSize(float size) {
+        No::size = size;
     }
 
     void setVertice(int vertice) {
@@ -138,6 +177,14 @@ public:
 
     void setValorAresta(const T &valorAresta) {
         No::valorAresta = valorAresta;
+    }
+
+    void adicionaData(const string &key, const string &valor) {
+        data.emplace_back(key, valor);
+    }
+
+    void adicionaArestaData(const string &key, const string &valor) {
+        arestaData.emplace_back(key, valor);
     }
 
 };

@@ -10,8 +10,9 @@ using std::endl;
 using grafos::No;
 
 namespace grafos {
+template <typename T = float>
 class GMLParser {
-    No **listaAdj;
+    No<T> **listaAdj;
     int tamanho;
     const string arquivo;
 
@@ -57,7 +58,7 @@ class GMLParser {
 
     }*/
 public:
-    GMLParser(No **listaAdj, int tamanho, const string &arquivo) :
+    GMLParser(No<T> **listaAdj, int tamanho, const string &arquivo) :
         listaAdj(listaAdj), tamanho(tamanho), arquivo(arquivo) { }
 
     string gerarGML() {
@@ -81,7 +82,7 @@ public:
 
        // colocando as arestas no GML
        for(int i = 0; i < tamanho; i++) {
-           No *lido = listaAdj[i];
+           No<T> *lido = listaAdj[i];
            while(lido != nullptr) {
                adicionaEspacos(out, esp);
                out << "edge" << endl;

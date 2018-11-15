@@ -7,6 +7,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     procurarBtn = ui->pushButton;
     arquivoEdit = ui->arquivoEdit;
+    verticesLabel = ui->verticesLabel;
+    arestasLabel = ui->arestasLabel;
+    tipoLabel = ui->tipoLabel;
+    salvaBtn = ui->salvaBtn;
+    connect(salvaBtn, SIGNAL (clicked()), this, SLOT (salva()));
     connect(procurarBtn, SIGNAL (clicked()), this, SLOT (procurarGrafo()));
 }
 
@@ -15,7 +20,7 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::procurarGrafo() {
-    arquivoEdit->setText("Procurado");
+    arquivoEdit->setText("Procurado...");
     QFileDialog dialog(this);
     dialog.setFileMode(QFileDialog::ExistingFile);
     dialog.setViewMode(QFileDialog::Detail);
@@ -26,8 +31,16 @@ void MainWindow::procurarGrafo() {
         filename = dialog.selectedFiles();
     }
 
-    GraphMLParser(filename[0].toStdString());
+    dialog.close();
 
+    arquivoEdit->setText(filename[0]);
+    GraphMLParser parser(arquivoEdit->text().toStdString());
+    grafo = parser.getGrafo();
+    tipoLabel->setText("Tipo: Orientado Valorado");
+    QString q = "Vertices: " + QString::number(grafo->getVerticesNum());
+    verticesLabel->setText(q);
+    q = "Arestas: " + QString::number(grafo->getArestasNum());
+    arestasLabel->setText(q);
 
 
 
@@ -50,6 +63,22 @@ void MainWindow::procurarGrafo() {
 //    grafo.pegaGML("teste.gml");
 //    msgBox.setWindowTitle("Salvo");
 //    msgBox.setText("GML salvo");
-//    msgBox.exec();
+    //    msgBox.exec();
+}
+
+void MainWindow::salva() {
+    QFileDialog dialog(this);
+    dialog.setFileMode(QFileDialog::AnyFile);
+    dialog.setViewMode(QFileDialog::Detail);
+    dialog.setDefaultSuffix(".GraphML");
+
+    QStringList filename;
+    if(dialog.exec()) {
+        filename = dialog.selectedFiles();
+    }
+
+    dialog.close();
+    grafos::GeradorGraphML gerador(filename[0].toStdString(), grafo);
+
 }
 

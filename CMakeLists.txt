@@ -10,6 +10,8 @@ add_executable(trabalhoGrafos
         trabalhoGrafos/gmlparser.h
         trabalhoGrafos/grafo.cpp
         trabalhoGrafos/grafo.h
+        trabalhoGrafos/grafobuilder.cpp
+        trabalhoGrafos/grafobuilder.h
         trabalhoGrafos/grafotipo.h
         trabalhoGrafos/graphmlparser.cpp
         trabalhoGrafos/graphmlparser.h
