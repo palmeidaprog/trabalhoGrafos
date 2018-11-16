@@ -26,7 +26,7 @@ void grafos::GeradorGraphML::salva() {
            " id=\"label\"/>" << endl;
     arq << "<key attr.name=\"Edge Label\" attr.type=\"string\" " <<
            "for=\"edge\" id=\"edgelabel\"/>" << endl;
-    arq << "<key attr.name=\"weight\" attr.type=\"double\" <<
+    arq << "<key attr.name=\"weight\" attr.type=\"double\"" <<
            "for=\"edge\" id=\"weight\"/>" << endl;
     arq << "<key attr.name=\"r\" attr.type=\"int\" for=\"node\" " <<
            "id=\"r\"/>" << endl <<
@@ -82,6 +82,7 @@ void grafos::GeradorGraphML::salva() {
                     << "</data>" << endl;
             }
             arq << "</edge>" << endl;
+            no = no->getProx();
         }
     }
 

@@ -68,7 +68,7 @@ public:
     std::string getLista() {
         stringstream s;
 
-        for(int i = 0; i < tamanho; i++) {
+        for(int i = 0; i < vertices.size(); i++) {
             s << "[" << i << "]";
             No<T> *lido = listaAdj[i];
             while(lido != nullptr) {
@@ -131,9 +131,6 @@ private:
         }
         fclose(arquivo);
     }
-
-
-
 
 
 

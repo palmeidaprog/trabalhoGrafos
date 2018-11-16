@@ -19,4 +19,6 @@ add_executable(trabalhoGrafos
         trabalhoGrafos/maincontroller.cpp
         trabalhoGrafos/maincontroller.h
         trabalhoGrafos/no.cpp
+        trabalhoGrafos/geradorgraphml.cpp
+        trabalhoGrafos/geradorgraphml.h
         trabalhoGrafos/no.h)
