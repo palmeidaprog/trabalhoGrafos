@@ -2,9 +2,12 @@
 #define CLUSTER_H
 
 #include <string>
+#include <cmath>
 #include <vector>
+#include <cstdlib>
 #include "centroid.h"
 #include "no.h"
+#include "kmeansmodo.h"
 
 
 using std::string;
@@ -17,6 +20,17 @@ class Cluster {
     string clusterLabel;
     Centroid<T> *centroid;
     vector<No<T>*> set;
+    KmeansModo modo;
+    struct Cor {
+        int r, g, b;
+        Cor() {
+            r = rand() % 256;
+            g = rand() % 256;
+            b = rand() % 256;
+        }
+        ~Cor() { }
+    };
+    Cor cor;
 
     void atualizaCentroid() {
         T soma = 0;
@@ -28,12 +42,17 @@ class Cluster {
     }
 
 public:
-    Cluster(int clusterNumero, Centroid<T> *centroid,
-            const string &label = "") : clusterNumero(clusterNumero),
-            centroid(centroid), clusterLabel(label) { }
+    Cluster(int clusterNumero, Centroid<T> *centroid, KmeansModo modo =
+            KmeansModo::PESO_ARESTAS, const string &label = "") :
+            clusterNumero(clusterNumero), centroid(centroid),
+            modo(modo), clusterLabel(label) { }
 
     ~Cluster() {
         delete centroid;
+    }
+
+    const vector<No<T>*> &getClusterData() {
+        return set;
     }
 
     void adiciona(No<T> *no) {
@@ -56,6 +75,14 @@ public:
 
     T compara(const T &data) const {
         return std::abs(data - this->centroid->getData());
+    }
+
+    void colorir() {
+        for(auto no : set) {
+            no->getOrigem()->setR(cor.r);
+            no->getOrigem()->setG(cor.g);
+            no->getOrigem()->setB(cor.b);
+        }
     }
 };
 }}

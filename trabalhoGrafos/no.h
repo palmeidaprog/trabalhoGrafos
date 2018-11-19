@@ -59,10 +59,11 @@ public:
     }
 
 
-    No(const string &id) : verticeId(id), prox(nullptr) { }
+    No(const string &id) : verticeId(id), prox(nullptr), cluster(-1) { }
 
-    No(int vertice, const string &verticeId, No<T> *origem, No *prox = nullptr) :
-            vertice(vertice), verticeId(verticeId), origem(origem), prox(prox) { }
+    No(int vertice, const string &verticeId, No<T> *origem,
+            No *prox = nullptr) : vertice(vertice), verticeId(verticeId),
+            origem(origem), prox(prox), cluster(-1) { }
     ~No() { }
 
     inline bool operator>=(const No &b) {
@@ -96,7 +97,7 @@ public:
         this->vertice = vertice;
     }
 
-    No *getProx() const {
+    No<T> *getProx() {
         return prox;
     }
 
@@ -192,7 +193,7 @@ public:
         No::cluster = cluster;
     }
 
-    T getValorAresta() const {
+    T getValorAresta() {
         return valorAresta;
     }
 

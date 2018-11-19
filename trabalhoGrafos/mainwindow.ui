@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>441</width>
-    <height>342</height>
+    <height>368</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -82,7 +82,7 @@
       <x>100</x>
       <y>150</y>
       <width>251</width>
-      <height>179</height>
+      <height>205</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -99,7 +99,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit">
+        <widget class="QLineEdit" name="iterEdit">
          <property name="inputMethodHints">
           <set>Qt::ImhFormattedNumbersOnly</set>
          </property>
@@ -129,7 +129,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_2">
+        <widget class="QLineEdit" name="clusterEdit">
          <property name="inputMethodHints">
           <set>Qt::ImhDigitsOnly|Qt::ImhFormattedNumbersOnly</set>
          </property>
@@ -138,6 +138,20 @@
          </property>
          <property name="alignment">
           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="checkBoxLayout">
+       <item>
+        <widget class="QCheckBox" name="colorirCheckbox">
+         <property name="text">
+          <string>Colorir o grafo</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -158,6 +172,16 @@
          </property>
          <property name="text">
           <string>K-means!!</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pesosBtn">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Gerar Pesos Aleatórios</string>
          </property>
         </widget>
        </item>

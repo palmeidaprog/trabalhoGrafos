@@ -19,61 +19,73 @@ class Kmeans {
     vector<Cluster<T>*> clusters;
 
     void inicializaClusters() {
+        vector<Centroid<T>*> c = grafo->getCentroid(numeroDeClusters);
         for(size_t i = 0; i < numeroDeClusters; i++) {
-            clusters.emplace_back();
+            clusters.emplace_back(new Cluster<T>(i, c[i]));
         }
     }
 
-    bool adicionaDados() {
-        IteradorGrafo<T> iterador = grafo->getIterador();
+    bool iteracao() {
+        IteradorGrafo<T> *iterador = grafo->getIterador();
         bool modificou = false;
 
         // adiciona os Nos aos clusters
-        while(iterador.hasNext()) {
-            No<T> *no = iterador.next();
-            T minimo = clusters[0]->compara(no);
+        while(iterador->hasNext()) {
+            No<T> *no = iterador->next();
+            T minimo = clusters[0]->compara(no->getValorAresta());
             int cluster = 0;
 
             for(size_t i = 0; i < clusters.size(); i++) {
-                if(clusters[i]->compara(no) < minimo) {
-                    minimo = clusters[i]->compara(no);
+                if(clusters[i]->compara(no->getValorAresta()) < minimo) {
+                    minimo = clusters[i]->compara(no->getValorAresta());
                     cluster = i;
                 }
             }
-            if(no->getCluster() == -1) {
+            if(no->getCluster() != cluster) {
+                if(no->getCluster() != -1) {
+                    clusters[no->getCluster()]->remove(no);
+                }
                 clusters[cluster]->adiciona(no);
-            } else if(no->getCluster() != cluster) {
-                clusters[no->getCluster()]->remove(no);
-                clusters[cluster]->adiciona(no);
+                modificou = true;
             }
 
         }
-
+        delete iterador;
         return modificou;
     }
 
 
 
 public:
-    Kmeans(int numeroDeClusters, Grafo<T> *grafo, bool colorir = true,
-            KmeansModo modo = KmeansModo::PESO_ARESTAS,
-            int maximoIteracoes = INT_MAX) :
+    Kmeans(int numeroDeClusters, Grafo<T> *grafo, int maximoIteracoes =
+            INT_MAX, bool colorir = true,  KmeansModo modo =
+                    KmeansModo::PESO_ARESTAS) :
             numeroDeClusters(numeroDeClusters), maxIteracoes(maxIteracoes),
             grafo(grafo), modificou(true), colorir(colorir), modo(modo) {
         inicializaClusters();
         executa();
     }
-    ~Kmeans() {  }
+    ~Kmeans() {
+        for(auto c : clusters) {
+            delete c;
+        }
+    }
 
     void executa() {
-        adicionaDados();
-
-        //
-        int iter = 1;
+        int iter = 0;
         bool modificou = true;
         while(modificou && iter++ <= maxIteracoes) {
-
+            modificou = iteracao();
         }
+        if(colorir) {
+            for(auto i : clusters) {
+                i->colorir();
+            }
+        }
+    }
+
+    const vector<Cluster<T>*> &getClusters() {
+        return clusters;
     }
 };
 }}

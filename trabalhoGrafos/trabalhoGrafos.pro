@@ -21,7 +21,6 @@ SOURCES += main.cpp\
     grafobuilder.cpp \
     geradorgraphml.cpp \
     cluster.cpp \
-    km.cpp \
     kmeans.cpp \
     centroid.cpp
 
@@ -35,7 +34,6 @@ HEADERS  += \
     grafobuilder.h \
     geradorgraphml.h \
     cluster.h \
-    km.h \
     kmeans.h \
     centroid.h \
     kmeansmodo.h \

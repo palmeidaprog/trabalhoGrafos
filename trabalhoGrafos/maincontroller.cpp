@@ -13,10 +13,17 @@ MainWindow::MainWindow(QWidget *parent) :
     salvaBtn = ui->salvaBtn;
     kmeansBtn = ui->kmeansBtn;
     mostraListaBtn = ui->mostraListaBtn;
+    colorirCheckbox = ui->colorirCheckbox;
+    checkboxLayout = ui->checkBoxLayout;
+    iterEdit = ui->iterEdit;
+    clusterEdit = ui->clusterEdit;
+    pesosBtn = ui->pesosBtn;
+    checkboxLayout->setAlignment(Qt::AlignHCenter);
     connect(kmeansBtn, SIGNAL (clicked()), this, SLOT (kmeansIt()));
     connect(salvaBtn, SIGNAL (clicked()), this, SLOT (salva()));
     connect(procurarBtn, SIGNAL (clicked()), this, SLOT (procurarGrafo()));
     connect(mostraListaBtn, SIGNAL (clicked()), this, SLOT (mostraLista()));
+    connect(pesosBtn, SIGNAL (clicked()), this, SLOT (gerarPesos()));
 }
 
 MainWindow::~MainWindow() {
@@ -39,6 +46,7 @@ void MainWindow::procurarGrafo() {
         kmeansBtn->setEnabled(true);
         mostraListaBtn->setEnabled(true);
         salvaBtn->setEnabled(true);
+        pesosBtn->setEnabled(true);
         GraphMLParser parser(arquivoEdit->text().toStdString());
         grafo = parser.getGrafo();
         tipoLabel->setText("Tipo: Orientado Valorado");
@@ -74,5 +82,21 @@ void MainWindow::mostraLista() {
 }
 
 void MainWindow::kmeansIt() {
+    Kmeans<float> kmeans(clusterEdit->text().toInt(), grafo,
+                         iterEdit->text().toInt(),
+                         colorirCheckbox->isChecked());
+    QMessageBox msg;
+    msg.setWindowTitle("Sucesso!");
+    msg.setText("Kmeans executado com sucesso");
+    msg.exec();
 
+}
+
+void MainWindow::gerarPesos() {
+    grafo->gerarPesosAleatorios(1);
+
+    QMessageBox m;
+    m.setWindowTitle("Sucesso!");
+    m.setText("Pesos aleatorios gerados entre 0 e 1");
+    m.exec();
 }

@@ -2,6 +2,7 @@
 #define ITERADORGRAFO_H
 
 #include <stdexcept>
+#include "no.h"
 
 namespace grafos {
 template <typename T>
@@ -9,9 +10,17 @@ class IteradorGrafo {
     No<T> **listaAdj, *atual;
     int tamanho, pos = 0;
 
+    void inicializaIterador() {
+        do {
+            atual = listaAdj[pos++];
+        } while(atual == nullptr && pos < tamanho);
+    }
+
 public:
     IteradorGrafo(No<T> **listaAdj, int tamanho) : listaAdj(listaAdj),
-        tamanho(tamanho) { }
+        atual(nullptr), tamanho(tamanho) {
+        inicializaIterador();
+    }
     ~IteradorGrafo() { }
 
     bool hasNext() {

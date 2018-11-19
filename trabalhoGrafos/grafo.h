@@ -5,6 +5,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <cstdlib>
 #include <map>
 #include "no.h"
 #include "gmlparser.h"
@@ -40,9 +41,9 @@ public:
 
     Grafo(No<T> **listaAdjacente, const vector<No<T>*> &vertices,
           GrafoTipo tipo = GrafoTipo::VALORADO_ORIENTADO, int arestas = 0,
-          const string &id = "") : listaAdj(listaAdjacente),
-        vertices(vertices), tipo(tipo), id(id), arestas(arestas)
-    { }
+          const string &id = "") : tamanho(vertices.size()),
+        listaAdj(listaAdjacente), vertices(vertices), tipo(tipo), id(id),
+        arestas(arestas) { }
 
     ~Grafo() {
         for(int i = 0; i < tamanho; i++) {
@@ -76,7 +77,8 @@ public:
             s << "[" << i << "]";
             No<T> *lido = listaAdj[i];
             while(lido != nullptr) {
-                s << " ->" << lido->getVertice();
+                s << " ->" << lido->getVertice() << "(" <<
+                    lido->getCluster() << ")";
                 lido = lido->getProx();
             }
             s << "\n";
@@ -109,15 +111,38 @@ public:
         return new IteradorGrafo<T>(listaAdj, tamanho);
     }
 
+    void gerarPesosAleatorios(int max) {
+        max *= 100;
+        for(int i = 0; i < tamanho; i++) {
+            No<T> *no = listaAdj[i];
+            while(no != nullptr) {
+                double num = (rand() % max) / 100.0;
+                no->setValorAresta(num);
+                no = no->getProx();
+            }
+        }
+    }
+
     vector<Centroid<T>*> getCentroid(int numeroDeCentroids) {
         vector<Centroid<T>*> centroids;
         for(int i = 0; i < numeroDeCentroids; i++) {
-            int indice = (tamanho - 1) / i + ((i & 1) ? (tamanho-1)/2 : 0);
-            while(listaAdj[indice] == nullptr) {
-                ++indice;
+            int indice;
+            if(i == 0) {
+                indice = 0;
+            } else if(i == 1) {
+                indice = tamanho - 1;
+            } else {
+                indice = (tamanho - 1) / i + ((i & 1) ? (tamanho-1)/2 : 0);
             }
-            centroids.emplace_back(listaAdj[indice]->getValorAresta());
+            while(listaAdj[indice] == nullptr) {
+                if(++indice >= tamanho) {
+                    indice = rand() % tamanho;
+                }
+            }
+            centroids.push_back(new Centroid<T>
+                                (listaAdj[indice]->getValorAresta()));
         }
+        return centroids;
     }
 
 
