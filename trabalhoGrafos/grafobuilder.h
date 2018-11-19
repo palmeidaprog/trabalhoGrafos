@@ -97,6 +97,7 @@ public:
                                  No<T> *target) {
         criarListaAdj();
         target->setArestaId(id);
+        target->setOrigem(getNo(source));
         insereVertice(&listaAdj[getNo(source)->getVertice()], target);
         ++arestas;
         return this;

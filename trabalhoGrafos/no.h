@@ -12,6 +12,7 @@ using std::vector;
 namespace grafos {
 template <typename T = float>
 class No {
+    No<T> *origem;
     int vertice;
     string verticeId, verticeLabel;
     string arestaId, arestaLabel;
@@ -19,6 +20,7 @@ class No {
     float x, y, size; // posicao (gephi)
     T valorAresta; // peso da aresta (pode ser qualquer tipo)
     No *prox;
+    int cluster;
 
     struct Data {
         string key;
@@ -34,6 +36,7 @@ public:
 
     // copia
     No(const No<T> *copia) : prox(nullptr) {
+        origem = copia->origem;
         vertice = copia->vertice;
         verticeId = copia->verticeId;
         verticeLabel = copia->verticeLabel;
@@ -46,6 +49,7 @@ public:
         y = copia->y;
         size = copia->size;
         valorAresta = copia->valorAresta;
+        cluster = copia->cluster;
     }
 
     No(int vertice, No<T> *prox = nullptr) : vertice(vertice), prox(prox) {
@@ -54,10 +58,11 @@ public:
         verticeId = s.str();
     }
 
+
     No(const string &id) : verticeId(id), prox(nullptr) { }
 
-    No(int vertice, const string &verticeId, No *prox = nullptr) :
-            vertice(vertice), verticeId(verticeId), prox(prox) { }
+    No(int vertice, const string &verticeId, No<T> *origem, No *prox = nullptr) :
+            vertice(vertice), verticeId(verticeId), origem(origem), prox(prox) { }
     ~No() { }
 
     inline bool operator>=(const No &b) {
@@ -131,6 +136,14 @@ public:
         No::arestaLabel = arestaLabel;
     }
 
+    No<T> *getOrigem() const {
+        return origem;
+    }
+
+    void setOrigem(No<T> *origem) {
+        No::origem = origem;
+    }
+
     int getR() const {
         return r;
     }
@@ -169,6 +182,14 @@ public:
 
     void setY(float y) {
         No::y = y;
+    }
+
+    int getCluster() const {
+        return cluster;
+    }
+
+    void setCluster(int cluster) {
+        No::cluster = cluster;
     }
 
     T getValorAresta() const {

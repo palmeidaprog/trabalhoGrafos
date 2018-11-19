@@ -21,4 +21,11 @@ add_executable(trabalhoGrafos
         trabalhoGrafos/no.cpp
         trabalhoGrafos/geradorgraphml.cpp
         trabalhoGrafos/geradorgraphml.h
+        trabalhoGrafos/centroid.h
+        trabalhoGrafos/centroid.cpp
+        trabalhoGrafos/kmeans.h
+        trabalhoGrafos/kmeans.cpp
+        trabalhoGrafos/cluster.h
+        trabalhoGrafos/cluster.cpp
+        trabalhoGrafos/kmeansmodo.h
         trabalhoGrafos/no.h)

@@ -20,7 +20,10 @@ SOURCES += main.cpp\
     graphmlparser.cpp \
     grafobuilder.cpp \
     geradorgraphml.cpp \
-    kmeans.cpp
+    cluster.cpp \
+    km.cpp \
+    kmeans.cpp \
+    centroid.cpp
 
 HEADERS  += \
     grafo.h \
@@ -31,6 +34,11 @@ HEADERS  += \
     grafotipo.h \
     grafobuilder.h \
     geradorgraphml.h \
-    kmeans.h
+    cluster.h \
+    km.h \
+    kmeans.h \
+    centroid.h \
+    kmeansmodo.h \
+    iteradorgrafo.h
 
 FORMS    += mainwindow.ui

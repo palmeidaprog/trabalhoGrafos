@@ -9,10 +9,14 @@
 #include "no.h"
 #include "gmlparser.h"
 #include "grafotipo.h"
+#include "iteradorgrafo.h"
+#include "kmeansmodo.h"
+#include "centroid.h"
 
 using std::stringstream;
 using std::string;
 using std::vector;
+using grafos::kmeans::Centroid;
 
 namespace grafos {
 template <typename T = float>
@@ -99,6 +103,21 @@ public:
 
     vector<No<T>*> getVertices() {
         return vertices;
+    }
+
+    IteradorGrafo<T> *getIterador() {
+        return new IteradorGrafo<T>(listaAdj, tamanho);
+    }
+
+    vector<Centroid<T>*> getCentroid(int numeroDeCentroids) {
+        vector<Centroid<T>*> centroids;
+        for(int i = 0; i < numeroDeCentroids; i++) {
+            int indice = (tamanho - 1) / i + ((i & 1) ? (tamanho-1)/2 : 0);
+            while(listaAdj[indice] == nullptr) {
+                ++indice;
+            }
+            centroids.emplace_back(listaAdj[indice]->getValorAresta());
+        }
     }
 
 
