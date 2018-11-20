@@ -36,8 +36,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow() {
     delete ui;
-    delete grafo;
     delete kmeans;
+    delete grafo;
+
 }
 
 void MainWindow::procurarGrafo() {
@@ -86,10 +87,10 @@ void MainWindow::mostraLista() {
                      QString::number(grafo->getVerticesNum()));
     m.setText(QString::fromStdString(grafo->getLista()));
     m.exec();
-    ofstream x("grafo.txt");
-    std::string y = grafo->getLista();
-    x << y << std::endl;
-    x.close();
+//    ofstream x("grafo.txt");
+//    std::string y = grafo->getLista();
+//    x << y << std::endl;
+//    x.close();
 }
 
 void MainWindow::kmeansIt() {

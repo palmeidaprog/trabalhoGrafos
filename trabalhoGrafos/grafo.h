@@ -48,7 +48,7 @@ public:
         arestas(arestas) { }
 
     ~Grafo() {
-        for(int i = 0; i < tamanho; i++) {
+        for(int i = 0; i < vertices.size(); i++) {
             No<T> *lido = listaAdj[i];
             while(lido != nullptr) {
                 No<T> *apaga = lido;

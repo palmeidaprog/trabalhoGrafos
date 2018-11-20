@@ -43,8 +43,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Grafo<float> *grafo;
-    Kmeans<float> *kmeans;
+    Grafo<float> *grafo = nullptr;
+    Kmeans<float> *kmeans = nullptr;
     QPushButton *procurarBtn, *salvaBtn, *mostraListaBtn, *kmeansBtn,
     *pesosBtn, *salvaClustersBtn;
     QLineEdit *arquivoEdit, *clusterEdit, *iterEdit;

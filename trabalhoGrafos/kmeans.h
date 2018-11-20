@@ -25,7 +25,7 @@ class Kmeans {
         if(modo == KmeansModo::PESO_ARESTAS) {
             c = grafo->getCentroid(numeroDeClusters, modo);
         } else {
-            c = grafo->getCentroidDistancia(numeroDeClusters, modo);
+            c = grafo->getCentroid(numeroDeClusters, modo);
         }
         for(size_t i = 0; i < numeroDeClusters; i++) {
             clusters[i] = new Cluster<T>(i, c[i], modo);
@@ -87,7 +87,7 @@ class Kmeans {
 
         }
         delete iterador;
-        return true;
+        return modificou;
     }
 
 
@@ -96,7 +96,7 @@ public:
     Kmeans(int numeroDeClusters, Grafo<T> *grafo, int maximoIteracoes =
             INT_MAX, bool colorir = true,  KmeansModo modo =
                     KmeansModo::PESO_ARESTAS) :
-            numeroDeClusters(numeroDeClusters), maxIteracoes(maxIteracoes),
+            numeroDeClusters(numeroDeClusters), maxIteracoes(maximoIteracoes),
             grafo(grafo), modificou(true), colorir(colorir), modo(modo) {
         clusters.resize(numeroDeClusters);
         clusters.shrink_to_fit();
@@ -104,15 +104,17 @@ public:
         executa();
     }
     ~Kmeans() {
-        for(auto c : clusters) {
-            delete c;
+        if(clusters.size() > 0) {
+            for(auto c : clusters) {
+                delete c;
+            }
         }
     }
 
     void executa() {
         iter = 0;
         bool modificou = true;
-        while(modificou && iter++ <= maxIteracoes) {
+        while(modificou && iter++ < maxIteracoes) {
             if(modo == KmeansModo::PESO_ARESTAS) {
                 modificou = iteracao();
             } else {

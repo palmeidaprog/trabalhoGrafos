@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 include_directories(trabalhoGrafos)
 
 add_executable(trabalhoGrafos
+        trabalhoGrafos/teste.cpp
         trabalhoGrafos/gmlparser.cpp
         trabalhoGrafos/gmlparser.h
         trabalhoGrafos/grafo.cpp
@@ -15,9 +16,6 @@ add_executable(trabalhoGrafos
         trabalhoGrafos/grafotipo.h
         trabalhoGrafos/graphmlparser.cpp
         trabalhoGrafos/graphmlparser.h
-        trabalhoGrafos/main.cpp
-        trabalhoGrafos/maincontroller.cpp
-        trabalhoGrafos/maincontroller.h
         trabalhoGrafos/no.cpp
         trabalhoGrafos/geradorgraphml.cpp
         trabalhoGrafos/geradorgraphml.h
