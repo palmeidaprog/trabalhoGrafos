@@ -1,5 +1,7 @@
 #include "maincontroller.h"
 #include "ui_mainwindow.h"
+#include <cstdlib>
+#include <ctime>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -7,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     procurarBtn = ui->pushButton;
     arquivoEdit = ui->arquivoEdit;
+    arquivoEdit->setReadOnly(true);
     verticesLabel = ui->verticesLabel;
     arestasLabel = ui->arestasLabel;
     tipoLabel = ui->tipoLabel;
@@ -18,16 +21,23 @@ MainWindow::MainWindow(QWidget *parent) :
     iterEdit = ui->iterEdit;
     clusterEdit = ui->clusterEdit;
     pesosBtn = ui->pesosBtn;
+    distanciaCheckbox = ui->distanciaCheckbox;
+    salvaClustersBtn = ui->salvaClustersBtn;
     checkboxLayout->setAlignment(Qt::AlignHCenter);
+    connect(salvaClustersBtn, SIGNAL (clicked()), this,
+            SLOT (salvaClusters()));
     connect(kmeansBtn, SIGNAL (clicked()), this, SLOT (kmeansIt()));
     connect(salvaBtn, SIGNAL (clicked()), this, SLOT (salva()));
     connect(procurarBtn, SIGNAL (clicked()), this, SLOT (procurarGrafo()));
     connect(mostraListaBtn, SIGNAL (clicked()), this, SLOT (mostraLista()));
     connect(pesosBtn, SIGNAL (clicked()), this, SLOT (gerarPesos()));
+    srand(time(NULL));
 }
 
 MainWindow::~MainWindow() {
     delete ui;
+    delete grafo;
+    delete kmeans;
 }
 
 void MainWindow::procurarGrafo() {
@@ -47,6 +57,7 @@ void MainWindow::procurarGrafo() {
         mostraListaBtn->setEnabled(true);
         salvaBtn->setEnabled(true);
         pesosBtn->setEnabled(true);
+        salvaClustersBtn->setEnabled(true);
         GraphMLParser parser(arquivoEdit->text().toStdString());
         grafo = parser.getGrafo();
         tipoLabel->setText("Tipo: Orientado Valorado");
@@ -82,12 +93,15 @@ void MainWindow::mostraLista() {
 }
 
 void MainWindow::kmeansIt() {
-    Kmeans<float> kmeans(clusterEdit->text().toInt(), grafo,
+    kmeans = new Kmeans<float>(clusterEdit->text().toInt(), grafo,
                          iterEdit->text().toInt(),
-                         colorirCheckbox->isChecked());
+                         colorirCheckbox->isChecked(),
+                         (distanciaCheckbox->isChecked() ?
+                              KmeansModo::DISTANCIA_EUCLIDIANA :
+                              KmeansModo::PESO_ARESTAS));
     QMessageBox msg;
     msg.setWindowTitle("Sucesso!");
-    msg.setText("Kmeans executado com sucesso");
+    msg.setText("K-means executado com sucesso");
     msg.exec();
 
 }
@@ -99,4 +113,20 @@ void MainWindow::gerarPesos() {
     m.setWindowTitle("Sucesso!");
     m.setText("Pesos aleatorios gerados entre 0 e 1");
     m.exec();
+}
+
+void MainWindow::salvaClusters() {
+    QFileDialog dialog(this);
+    dialog.setFileMode(QFileDialog::AnyFile);
+    dialog.setViewMode(QFileDialog::Detail);
+    dialog.setDefaultSuffix(".txt");
+    QString filename = QFileDialog::getSaveFileName(this,
+        tr("Salvar Clusters em Arquivo Texto"), "clusters.txt",
+        tr("Arquivo texto (*.TXT)"));
+    if(filename != "") {
+        ofstream x(filename.toStdString());
+        std::string y = kmeans->toString();
+        x << y << std::endl;
+        x.close();
+    }
 }

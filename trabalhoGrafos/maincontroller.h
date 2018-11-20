@@ -39,15 +39,17 @@ private slots:
     void mostraLista();
     void kmeansIt();
     void gerarPesos();
+    void salvaClusters();
 
 private:
     Ui::MainWindow *ui;
     Grafo<float> *grafo;
+    Kmeans<float> *kmeans;
     QPushButton *procurarBtn, *salvaBtn, *mostraListaBtn, *kmeansBtn,
-    *pesosBtn;
+    *pesosBtn, *salvaClustersBtn;
     QLineEdit *arquivoEdit, *clusterEdit, *iterEdit;
     QHBoxLayout *checkboxLayout;
-    QCheckBox *colorirCheckbox;
+    QCheckBox *colorirCheckbox, *distanciaCheckbox;
     QLabel *verticesLabel, *arestasLabel, *tipoLabel;
 
 };

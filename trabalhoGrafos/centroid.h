@@ -19,6 +19,22 @@ public:
         Centroid::data = data;
     }
 
+    float getX() const {
+        return x;
+    }
+
+    void setX(float x) {
+        Centroid::x = x;
+    }
+
+    float getY() const {
+        return y;
+    }
+
+    void setY(float y) {
+        Centroid::y = y;
+    }
+
 
 };
 }}

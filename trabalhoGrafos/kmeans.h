@@ -3,25 +3,32 @@
 
 #include <vector>
 #include <climits>
+#include <sstream>
 #include "grafo.h"
 #include "kmeansmodo.h"
 #include "cluster.h"
 
 using std::vector;
+using std::stringstream;
 
 namespace grafos { namespace kmeans {
 template <typename T>
 class Kmeans {
-    int numeroDeClusters, maxIteracoes;
+    int numeroDeClusters, maxIteracoes, iter;
     Grafo<T> *grafo;
     bool modificou, colorir;
     KmeansModo modo;
     vector<Cluster<T>*> clusters;
 
     void inicializaClusters() {
-        vector<Centroid<T>*> c = grafo->getCentroid(numeroDeClusters);
+        vector<Centroid<T>*> c;
+        if(modo == KmeansModo::PESO_ARESTAS) {
+            c = grafo->getCentroid(numeroDeClusters, modo);
+        } else {
+            c = grafo->getCentroidDistancia(numeroDeClusters, modo);
+        }
         for(size_t i = 0; i < numeroDeClusters; i++) {
-            clusters.emplace_back(new Cluster<T>(i, c[i]));
+            clusters[i] = new Cluster<T>(i, c[i], modo);
         }
     }
 
@@ -54,6 +61,35 @@ class Kmeans {
         return modificou;
     }
 
+    bool iteracaoDistancia() {
+        IteradorGrafo<T> *iterador = grafo->getIterador();
+        bool modificou = false;
+
+        // adiciona os Nos aos clusters
+        while(iterador->hasNext()) {
+            No<T> *no = iterador->next();
+            float minimo = clusters[0]->distancia(no);
+            int cluster = 0;
+
+            for(size_t i = 0; i < clusters.size(); i++) {
+                if(clusters[i]->distancia(no) < minimo) {
+                    minimo = clusters[i]->distancia(no);
+                    cluster = i;
+                }
+            }
+            if(no->getCluster() != cluster) {
+                if(no->getCluster() != -1) {
+                    clusters[no->getCluster()]->remove(no);
+                }
+                clusters[cluster]->adiciona(no);
+                modificou = true;
+            }
+
+        }
+        delete iterador;
+        return true;
+    }
+
 
 
 public:
@@ -62,6 +98,8 @@ public:
                     KmeansModo::PESO_ARESTAS) :
             numeroDeClusters(numeroDeClusters), maxIteracoes(maxIteracoes),
             grafo(grafo), modificou(true), colorir(colorir), modo(modo) {
+        clusters.resize(numeroDeClusters);
+        clusters.shrink_to_fit();
         inicializaClusters();
         executa();
     }
@@ -72,16 +110,30 @@ public:
     }
 
     void executa() {
-        int iter = 0;
+        iter = 0;
         bool modificou = true;
         while(modificou && iter++ <= maxIteracoes) {
-            modificou = iteracao();
+            if(modo == KmeansModo::PESO_ARESTAS) {
+                modificou = iteracao();
+            } else {
+                modificou = iteracaoDistancia();
+            }
         }
         if(colorir) {
             for(auto i : clusters) {
                 i->colorir();
             }
         }
+    }
+
+    string toString() {
+        stringstream s;
+        s << "Clusters " << numeroDeClusters <<
+                          " - Iteracoes feitas:" << iter << endl << endl;
+        for(auto a : clusters) {
+            s << a->toString();
+        }
+        return s.str();
     }
 
     const vector<Cluster<T>*> &getClusters() {

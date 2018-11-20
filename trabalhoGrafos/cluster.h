@@ -4,6 +4,7 @@
 #include <string>
 #include <cmath>
 #include <vector>
+#include <sstream>
 #include <cstdlib>
 #include "centroid.h"
 #include "no.h"
@@ -12,6 +13,8 @@
 
 using std::string;
 using std::vector;
+using std::stringstream;
+using std::endl;
 
 namespace grafos { namespace kmeans {
 template <typename T>
@@ -34,11 +37,23 @@ class Cluster {
 
     void atualizaCentroid() {
         T soma = 0;
-        for(size_t i = 0; i < set.size(); i++) {
+        for (size_t i = 0; i < set.size(); i++) {
             soma += set[i]->getValorAresta();
         }
         soma /= set.size();
         centroid->setData(soma);
+    }
+
+    void atualizaDistancia() {
+        float somaX = 0, somaY = 0;
+        for (size_t i = 0; i < set.size(); i++) {
+            somaX += set[i]->getX();
+            somaY += set[i]->getY();
+        }
+        somaX /= set.size();
+        somaY /= set.size();
+        centroid->setX(somaX);
+        centroid->setY(somaY);
     }
 
 public:
@@ -58,7 +73,11 @@ public:
     void adiciona(No<T> *no) {
         set.push_back(no);
         no->setCluster(clusterNumero);
-        atualizaCentroid();
+        if(modo == KmeansModo::PESO_ARESTAS) {
+            atualizaCentroid();
+        } else {
+            atualizaDistancia();
+        }
     }
 
     void remove(No<T> *no) {
@@ -75,6 +94,26 @@ public:
 
     T compara(const T &data) const {
         return std::abs(data - this->centroid->getData());
+    }
+
+    float distancia(No<T> *no) const {
+        return sqrt(pow(centroid->getY() - no->getY(), 2) +
+        pow(centroid->getX() - no->getX(), 2));
+    }
+
+    string toString() {
+        stringstream s;
+        s << "Cluster " << clusterNumero << " (" << clusterLabel << ") = { "
+          << "Centroid(" << centroid->getData() << ", " << centroid->getX()
+          << ", " << centroid->getY() << ")" << endl;
+        for(size_t i = 0; i < set.size(); i++) {
+            No<T> *no = set[i];
+            s << "\t (" << no->getOrigem()->getVerticeId() << ") --(" <<
+            no->getValorAresta() << ")--> (" << no->getVerticeId() << ")" <<
+            endl;
+        }
+        s << "}" << endl;
+        return s.str();
     }
 
     void colorir() {

@@ -6,6 +6,7 @@
 #include <sstream>
 #include <vector>
 #include <cstdlib>
+#include <algorithm>
 #include <map>
 #include "no.h"
 #include "gmlparser.h"
@@ -18,6 +19,7 @@ using std::stringstream;
 using std::string;
 using std::vector;
 using grafos::kmeans::Centroid;
+using grafos::kmeans::KmeansModo;
 
 namespace grafos {
 template <typename T = float>
@@ -112,18 +114,19 @@ public:
     }
 
     void gerarPesosAleatorios(int max) {
-        max *= 100;
+        max *= 10;
         for(int i = 0; i < tamanho; i++) {
             No<T> *no = listaAdj[i];
             while(no != nullptr) {
-                double num = (rand() % max) / 100.0;
+                double num = (rand() % max) / 10.0;
                 no->setValorAresta(num);
                 no = no->getProx();
             }
         }
     }
 
-    vector<Centroid<T>*> getCentroid(int numeroDeCentroids) {
+    vector<Centroid<T>*> getCentroid(int numeroDeCentroids,
+            KmeansModo modo) {
         vector<Centroid<T>*> centroids;
         for(int i = 0; i < numeroDeCentroids; i++) {
             int indice;
@@ -139,9 +142,45 @@ public:
                     indice = rand() % tamanho;
                 }
             }
-            centroids.push_back(new Centroid<T>
-                                (listaAdj[indice]->getValorAresta()));
+            if(modo == KmeansModo::PESO_ARESTAS) {
+                centroids.push_back(new Centroid<T>(
+                        listaAdj[indice]->getValorAresta()));
+            } else if(modo == KmeansModo::DISTANCIA_EUCLIDIANA) {
+                centroids.push_back(new Centroid<T>(
+                        listaAdj[indice]->getValorAresta(),
+                        listaAdj[indice]->getX(),
+                        listaAdj[indice]->getY()));
+            }
         }
+        return centroids;
+    }
+
+    vector<Centroid<T>*> getCentroidDistancia(int numeroDeCentroids,
+            KmeansModo modo) {
+        vector<Centroid<T>*> centroids;
+
+        float menorX = INT_MAX, maiorX = INT_MIN, menorY = INT_MAX,
+                maiorY = INT_MIN;
+        for(int i = 0; i < vertices.size(); i++) {
+            No<T> *no = listaAdj[i];
+            while(no != nullptr) {
+                menorX = std::min(menorX, no->getX());
+                menorY = std::min(menorY, no->getY());
+                maiorX = std::max(maiorX, no->getX());
+                maiorY = std::max(maiorY, no->getY());
+                no = no->getProx();
+            }
+        }
+
+        double diffX = (maiorX - menorX) / (numeroDeCentroids + 1);
+        double diffY = (maiorY - menorY) / (numeroDeCentroids + 1);
+        for(int i = 0; i < numeroDeCentroids; i++) {
+            centroids.push_back(new Centroid<T>(
+                                    0,
+                                    diffX * (i+1),
+                                    diffY * (i+1)));
+        }
+
         return centroids;
     }
 
