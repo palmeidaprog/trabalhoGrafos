@@ -61,7 +61,7 @@ class Kmeans {
         return modificou;
     }
 
-    bool iteracaoDistancia() {
+    /*bool iteracaoDistancia() {
         IteradorGrafo<T> *iterador = grafo->getIterador();
         bool modificou = false;
 
@@ -87,6 +87,34 @@ class Kmeans {
 
         }
         delete iterador;
+        return modificou;
+    }*/
+
+    bool iteracaoDistancia() {
+        IteradorGrafo<T> *iterador = grafo->getIterador();
+        bool modificou = false;
+        vector<No<T>*> vertices = grafo->getVertices();
+
+        // adiciona os Nos aos clusters
+        for(size_t i = 0; i < vertices.size(); i++) {
+            No<T> *no = vertices[i];
+            float minimo = clusters[0]->distancia(no);
+            int cluster = 0;
+
+            for(size_t i = 0; i < clusters.size(); i++) {
+                if(clusters[i]->distancia(no) < minimo) {
+                    minimo = clusters[i]->distancia(no);
+                    cluster = i;
+                }
+            }
+            if(no->getCluster() != cluster) {
+                if(no->getCluster() != -1) {
+                    clusters[no->getCluster()]->remove(no);
+                }
+                clusters[cluster]->adiciona(no);
+                modificou = true;
+            }
+        }
         return modificou;
     }
 

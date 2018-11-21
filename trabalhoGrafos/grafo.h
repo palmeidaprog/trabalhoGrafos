@@ -183,8 +183,6 @@ public:
 
         return centroids;
     }
-
-
 private:
     void criaListaAdj(FILE *arquivo) {
         if(arquivo == nullptr) {
@@ -217,8 +215,6 @@ private:
 
 
 
-private:
-
     void insereVertice(No<T> **no, int vertice) {
         No<T> *novo = new No<T>(vertice);
         if(*no == nullptr) {
@@ -243,6 +239,8 @@ private:
         novo->setProx(lido);
 
     }
+
+
 };
 }
 

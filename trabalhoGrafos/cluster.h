@@ -108,9 +108,14 @@ public:
           << ", " << centroid->getY() << ")" << endl;
         for(size_t i = 0; i < set.size(); i++) {
             No<T> *no = set[i];
-            s << "\t (" << no->getOrigem()->getVerticeId() << ") --(" <<
-            no->getValorAresta() << ")--> (" << no->getVerticeId() << ")" <<
-            endl;
+            if(modo == KmeansModo::PESO_ARESTAS) {
+                s << "\t (" << no->getOrigem()->getVerticeId() << ") --(" <<
+                  no->getValorAresta() << ")--> (" << no->getVerticeId() << ")" <<
+                  endl;
+            } else {
+                s << "\t (" << no->getVerticeId() << " : " <<
+                    no->getVerticeId() << ")" << endl;
+            }
         }
         s << "}" << endl;
         return s.str();
@@ -118,9 +123,16 @@ public:
 
     void colorir() {
         for(auto no : set) {
-            no->getOrigem()->setR(cor.r);
-            no->getOrigem()->setG(cor.g);
-            no->getOrigem()->setB(cor.b);
+            if(modo == KmeansModo::PESO_ARESTAS) {
+                no->getOrigem()->setR(cor.r);
+                no->getOrigem()->setG(cor.g);
+                no->getOrigem()->setB(cor.b);
+            } else {
+                no->setR(cor.r);
+                no->setG(cor.g);
+                no->setB(cor.b);
+            }
+
         }
     }
 };

@@ -20,7 +20,7 @@ using grafos::kmeans::Kmeans;
 using grafos::kmeans::KmeansModo;
 
 int main() {
-    GraphMLParser parser("g1.graphml");
+    GraphMLParser parser("grafo_1000_vertices.graphml");
     Grafo<float> *grafo = parser.getGrafo();
     cout << "V: " << grafo->getVerticesNum() << " A: " <<
         grafo->getArestasNum() << endl;
